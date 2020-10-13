@@ -129,7 +129,7 @@ int publi_PruebaImpresion(Publicacion* pBuffer, int limite)
 	        for(i=0;i<limite;i++){
 	            if(pBuffer!= NULL && !pBuffer[i].isEmpty){
 
-	            	printf("el nombre es %s", pBuffer[i].nombreArchivo);
+	            	printf("\n el nombre es %s", pBuffer[i].nombreArchivo);
 	           		printf("\n estado %d",pBuffer[i].estadoPublicacion);
 					printf("\n id %d",pBuffer[i].id);
 					printf("\n idCliente %d",pBuffer[i].idCliente);
@@ -144,5 +144,52 @@ int publi_PruebaImpresion(Publicacion* pBuffer, int limite)
 
 }
 
+int publi_contadorActivas(Publicacion* pBuffer,int limite,int idCliente){
+    int i;
+    int retorno=0;
+    for(i=0;i<limite;i++){
+        if(pBuffer[i].idCliente==idCliente&& pBuffer[i].estadoPublicacion== 1 && !pBuffer[i].isEmpty){
+            retorno++;
+        }
+    }
+    return retorno;
+}
+
+int publi_contadorPausadas(Publicacion* pBuffer,int limite,int idCliente){
+    int i;
+    int retorno=0;
+    for(i=0;i<limite;i++){
+        if(pBuffer[i].idCliente==idCliente&& pBuffer[i].estadoPublicacion== 0 && !pBuffer[i].isEmpty){
+            retorno++;
+        }
+    }
+    return retorno;
+}
 
 
+
+
+int publi_cantidadDeAfichesByIdCliente(Publicacion* pBuffer,int limite,int idCliente){
+    int i;
+    int cantidad=0;
+    if(pBuffer!=NULL&& limite >0){
+        for(i=0;i<limite;i++){
+            if(!pBuffer[i].isEmpty && pBuffer[i].idCliente==idCliente && pBuffer[i].estadoPublicacion==1){
+                cantidad++;
+            }
+        }
+    }
+    return cantidad;
+}
+int publi_cantPublicacionesByRubro(Publicacion *pBuffer,int limite,int numeroRubro){
+    int i;
+    int cantidad=0;
+    if(pBuffer!=NULL&& limite >0){
+        for(i=0;i<limite;i++){
+            if(!pBuffer[i].isEmpty && pBuffer[i].numeroRubro== numeroRubro){
+                cantidad++;
+            }
+        }
+    }
+    return cantidad;
+}

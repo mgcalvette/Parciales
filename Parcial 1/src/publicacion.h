@@ -24,8 +24,18 @@ int publi_obtenerID();
 int publi_inicializarArray(Publicacion* pBuffer,int limite);
 /*Probandola*/
 int publi_ImprimiByIdCliente(Publicacion* pBufferPubli,int limitePubli,Cliente* pBufferCli,int limiteCli,int id,int* indice);
+
 int publi_existeId(Publicacion* pBuffer,int limite,int id);
 
+
+int publi_contadorActivas(Publicacion* pBuffer,int limite,int idCliente);
+
+int publi_contadorPausadas(Publicacion* pBuffer,int limite,int idCliente);
+
 int publi_PruebaImpresion(Publicacion* pBuffer, int limite);
+
+int publi_cantidadDeAfichesByIdCliente(Publicacion* pBuffer,int limite,int idCliente);
+
+int publi_cantPublicacionesByRubro(Publicacion *pBuffer,int limite,int numeroRubro);
 
 #endif /* PUBLICACION_H_ */

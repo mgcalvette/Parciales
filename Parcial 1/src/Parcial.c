@@ -14,9 +14,11 @@
 #include "utn.h"
 #include "clientes.h"
 #include "publicacion.h"
+#include "informes.h"
 
 #define CANTIDADCLIENTES 5
 #define CANTIDADPUBLICACIONES 5
+int informes;
 
 int menu(int*opcion);
 int main()
@@ -26,7 +28,7 @@ int main()
     Publicacion publicaciones [CANTIDADPUBLICACIONES];
     int opcion;
     int auxid;
-    int auxidPubli;
+    //int auxidPubli;
     char auxNombre [50];
     char auxApellido[50];
     char auxTextoAviso[64];
@@ -58,7 +60,6 @@ int main()
                         auxid=cli_obtenerID();
                         cli_alta(clientes,auxid,CANTIDADCLIENTES,auxApellido,auxNombre,auxCuit);
                         printf("Alta satisfactoria Nº de Id: %d",auxid);
-                        cli_pruebaImpresion(clientes,CANTIDADCLIENTES);
 						getchar();
 
                     }
@@ -90,39 +91,66 @@ int main()
             case 4:
                 if(!utn_getEntero(&auxid,3,"\nIngrese el id del cliente: ","\nError...Ingrese un id valido ",-1,999)&&
                     !cli_existeId(clientes,CANTIDADCLIENTES,auxid)&&
-                    !utn_getEntero(&auxNumeroRubro,3,"\nIngrese el numero de rubro 1:arte 2:promocion :",
+                    !utn_getEntero(&auxNumeroRubro,3,"\nIngrese el numero de rubro 1: Arte  2: Publicidad :",
                     		"\nError ingrese un numero valido",0,2)&&
                     !utn_getLetrasYNumeros(auxTextoAviso,64,"\nIngrese el texto del aviso :"))
                     {
                 	publi_alta(publicaciones,auxid,CANTIDADPUBLICACIONES,auxTextoAviso,auxNumeroRubro);
-                	publi_PruebaImpresion(publicaciones,CANTIDADPUBLICACIONES);
                     }else{
                         printf("\nERROR! Vuelva a intentarlo");
                     }
                 break;
             case 5:
-            	if(!utn_getEntero(&auxid,3,"\nIngrese el id la publicacion a modificar: ",
-            			"\nError...Ingrese un id valido ",-1,999)&& !publi_existeId(publicaciones,CANTIDADPUBLICACIONES,auxid))
+            	if(!utn_getEntero(&auxid,3,"\nIngrese el id la publicacion a modificar: ","\nError! Ingrese un ID valido ",-1,999)
+            			&& !publi_existeId(publicaciones,CANTIDADPUBLICACIONES,auxid))
             	{
             		publi_ImprimiByIdCliente(publicaciones,CANTIDADPUBLICACIONES,clientes,CANTIDADCLIENTES,auxid,&i);
+            		if(!utn_getEntero(&confirmar,3,"\nDesea cambiar el estado? 0-si 1-no","\nError! Ingrese una opcion valida",0,1)&&
+            			!confirmar){
+            				publicaciones[i].estadoPublicacion=0;
+            				printf("Publicacion PAUSADA");
+            			}
             	}
 
                 break;
-            case 6:
+            case 6: if(!utn_getEntero(&auxid,3,"\nIngrese el id la publicacion a modificar: ","\nError! Ingrese un ID valido",-1,999)
+        			&& !publi_existeId(publicaciones,CANTIDADPUBLICACIONES,auxid))
+        	{
+        		publi_ImprimiByIdCliente(publicaciones,CANTIDADPUBLICACIONES,clientes,CANTIDADCLIENTES,auxid,&i);
+        		if(!utn_getEntero(&confirmar,3,"\nDesea cambiar el estado? 0-si 1-no","\nError! Ingrese una opcion valida",0,1)&&
+        			!confirmar){
+        				publicaciones[i].estadoPublicacion=0;
+        				printf("Publicacion REANUDADA");
+        			}
+        	}
+
 
                 break;
             case 7:
+            	inf_impClientesYAvisos(clientes,CANTIDADCLIENTES,publicaciones,CANTIDADPUBLICACIONES);
+
 
                 break;
             case 8:
-            	break;
+            	printf("\n1 Cliente mas avisos \n2 Cliente mas avisos pausados\n3 Rubro con mas avisos\n 4-SALIR");
+            	    utn_getEntero(&informes,3,"\nIngrese una opcion: ","\nError. Ingrese una opcion de informe",1,3);
+            		if(informes==1){
+            				inf_clienteMasventas(publicaciones,CANTIDADPUBLICACIONES,clientes,CANTIDADCLIENTES);
+            		}
+            		if(informes==2){
+            				inf_clienteMasAvisosPausados(publicaciones,CANTIDADPUBLICACIONES,clientes,CANTIDADCLIENTES);
+            		}
+            		if(informes==3){
+            			inf_rubroMasAvisos(publicaciones,CANTIDADPUBLICACIONES,clientes,CANTIDADCLIENTES);
+            		}
+            			break;
         }
     }while(opcion!=9);
 
     return EXIT_SUCCESS;
 }
 int menu(int*opcion){
-    printf("\n1-ALTAS\n2-MODIFICAR\n3-BAJA\n4-PUBLICAR AVISO\n5-PAUSAR AVISO\n6-REANUDAR VEAVISONTA\n7-IMPRIMIR CLIENTES\n8-INFORMAR\n9-SALIR");
+    printf("\n1-ALTAS\n2-MODIFICAR\n3-BAJA\n4-PUBLICAR AVISO\n5-PAUSAR AVISO\n6-REANUDAR AVISO \n7-IMPRIMIR CLIENTES\n8-INFORMAR\n9-SALIR");
     utn_getEntero(opcion,3,"\nIngrese una opcion: ","\nError...ingrese una opcion valida...",1,8);
     return 0;
 
