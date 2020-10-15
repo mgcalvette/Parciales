@@ -62,21 +62,21 @@ int inf_clienteMasAvisos(Publicacion* pBufferPubli,int limitePubli,Cliente* pBuf
 int inf_clienteMasAvisosPausados(Publicacion* pBufferPubli,int limitePubli,Cliente* pBufferCli,int limiteCli){
     int i;
     int auxId;
-    int auxMaxPausadas;
+    int contadorAvisos;
     if(pBufferCli!=NULL && limiteCli>0 && pBufferPubli!=NULL && limitePubli>0){
         for(i=0;i<limiteCli;i++){
             if (!pBufferCli[i].isEmpty){
-                if(auxMaxPausadas<publi_contadorPausadas(pBufferPubli,CANTIDADPUBLICACIONES,pBufferCli[i].idCliente)){
-                    auxMaxPausadas=publi_contadorPausadas(pBufferPubli,CANTIDADPUBLICACIONES,pBufferCli[i].idCliente);
+                if(contadorAvisos<publi_contadorPausadas(pBufferPubli,CANTIDADPUBLICACIONES,pBufferCli[i].idCliente)){
+                	contadorAvisos=publi_contadorPausadas(pBufferPubli,CANTIDADPUBLICACIONES,pBufferCli[i].idCliente);
                     auxId=pBufferCli[i].idCliente;
                 }
 
             }
         }
-        if(!auxMaxPausadas){
+        if(!contadorAvisos){
             printf("\nNo posee publicaciones en Pausa");
         }else{
-            printf("\nNumero mayor de publicaciones pausadas: %d",auxMaxPausadas);
+            printf("\nNumero mayor de publicaciones pausadas: %d",contadorAvisos);
             cli_impById(pBufferCli,limiteCli,auxId);
         }
     }
