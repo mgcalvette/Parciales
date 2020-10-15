@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "utn.h"
+#include "publicacion.h"
+
 
 
 
@@ -26,7 +28,7 @@ int cli_inicializarArray(Cliente* pBuffer,int limite){
     }
     return retorno;
 }
-int cli_alta(Cliente* pBuffer,int id,int limite,char* apellido,char* nombre,char*cuit){
+int cli_alta(Cliente* pBuffer,int id,int limite,char* nombre,char* apellido,char*cuit){
     int indice;
     int retorno=-1;
     if(pBuffer!=NULL && limite>0 && apellido!=NULL && nombre !=NULL && cuit != NULL){
@@ -83,12 +85,12 @@ int cli_modificarbyId(Cliente* pBuffer,int limite,int id){
     }
     return retorno;
 }
-int cli_eliminarbyId(Cliente* pBuffer,int limite,int idCliente){
+int cli_eliminarbyId(Cliente* pBuffer,int limite,int idCliente, int idClientePublicacion){
     int i;
     int retorno=-1;
     if(pBuffer!=NULL && limite>0){
         for(i=0;i<limite;i++){
-            if(pBuffer[i].isEmpty==0&& pBuffer[i].idCliente==idCliente){
+            if(pBuffer[i].isEmpty==0 && pBuffer[i].idCliente==idCliente && idClientePublicacion){
                 pBuffer[i].isEmpty=1;
                 retorno=0;
                 break;
@@ -148,7 +150,10 @@ int cli_listar (Cliente* pBuffer,int limite, int id){
         for(i=0;i<limite;i++){
             if(pBuffer[i].isEmpty==0 && pBuffer[i].idCliente==id){
                 retorno=0;
-                printf("\tId cuit prueba: %s",pBuffer[i].cuit);
+                printf("Nombre: %s",pBuffer[i].nombre);
+                printf("\nApellido: %s",pBuffer[i].apellido);
+                printf("\nCuit: %s",pBuffer[i].cuit);
+                printf("\nID: %d",pBuffer[i].idCliente);
             }
         }
     }
@@ -163,11 +168,11 @@ int cli_pruebaImpresion(Cliente* pBuffer, int limite)
 	        for(i=0;i<limite;i++){
 	            if(pBuffer!= NULL && !pBuffer[i].isEmpty){
 
-	            	printf("\n\n nombre es %s", pBuffer[i].nombre);
-	           		printf("\n apellido %s",pBuffer[i].apellido);
-					printf("\n cuit %s",pBuffer[i].cuit);
-					printf("\n idCliente %d",pBuffer[i].idCliente);
-					printf("\n isEmpty %d",pBuffer[i].isEmpty);
+	            	printf("\n\n Nombre des cliente es: %s", pBuffer[i].nombre);
+	           		printf("\n Apellido del cliente es: %s",pBuffer[i].apellido);
+					printf("\n El cuit del cliente es: %s",pBuffer[i].cuit);
+					printf("\n ID del cliente es: %d",pBuffer[i].idCliente);
+					printf("\n isEmpty %d\n",pBuffer[i].isEmpty);
 	            	retorno=0;
 
 	            }

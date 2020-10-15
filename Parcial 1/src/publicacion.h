@@ -32,10 +32,12 @@ int publi_contadorActivas(Publicacion* pBuffer,int limite,int idCliente);
 
 int publi_contadorPausadas(Publicacion* pBuffer,int limite,int idCliente);
 
-int publi_PruebaImpresion(Publicacion* pBuffer, int limite);
+int publi_pruebaImpresion(Publicacion* pBuffer, int limite);
 
 int publi_cantidadDeAfichesByIdCliente(Publicacion* pBuffer,int limite,int idCliente);
 
 int publi_cantPublicacionesByRubro(Publicacion *pBuffer,int limite,int numeroRubro);
+
+int publi_existeIdCliente(Publicacion* pBuffer,int limite,int idCliente);
 
 #endif /* PUBLICACION_H_ */

@@ -36,7 +36,7 @@ int cli_inicializarArray(Cliente* pBuffer,int limite);
  *\param cuit a cargar
  * \return int Return comienza en 0 si esta todo bien y -1 si algun parametro es incorrecto
  */
-int cli_alta(Cliente* pBuffer,int id,int limite,char* apellido,char* nombre,char*cuit);
+int cli_alta(Cliente* pBuffer,int id,int limite,char* nombre,char* apellido,char*cuit);
 /** \brief  modifica un cliente,recibiendo su id como parametro y permite modificar su
             apellido nombre y cuit.Coloca isEmpty en 0
  *\param Cliente puntero al array clientes
@@ -51,11 +51,12 @@ int cli_modificarbyId(Cliente* pBuffer,int limite,int id);
  *\param id numero de id a borrar
  * \return int Return comienza en 0 si esta todo bien y -1 si algun parametro es incorrecto
  */
-int cli_eliminarbyId(Cliente* pBuffer,int limite,int id);
+int cli_eliminarbyId(Cliente* pBuffer,int limite,int idCliente, int idClientePublicacion);
 /** \brief  valida si el cliente existe
  *\param Cliente puntero al array clientes
  *\param int limite del array
  *\param id numero de id a validar
+ *\param
  * \return int Return comienza en 0 si existe y -1 si no
  */
 int cli_existeId(Cliente* pbuffer,int limite,int id);

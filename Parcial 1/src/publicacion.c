@@ -38,7 +38,7 @@ int publi_alta(Publicacion* pBuffer,int idCliente,int limite,char* nombreArchivo
             pBuffer[indice].numeroRubro=numeroRubro;
             strcpy(pBuffer[indice].nombreArchivo,nombreArchivo);
             pBuffer[indice].estadoPublicacion=1;
-            printf("El ID de su publicacion es %d",pBuffer[indice].id);
+            printf("El ID de su publicacion es %d\n\n",pBuffer[indice].id);
         }
     }
     return retorno;
@@ -87,14 +87,19 @@ int publi_existeId(Publicacion* pBuffer,int limite,int id){
     return retorno;
 }
 
-
-
-
-
-
-
-
-
+int publi_existeIdCliente(Publicacion* pBuffer,int limite,int idCliente){
+    int i;
+    int retorno=-1;
+    if(pBuffer!=NULL && limite>0){
+        for(i=0;i<limite;i++){
+            if(pBuffer[i].idCliente==idCliente && !pBuffer[i].isEmpty){
+                retorno=0;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
 
 
 
@@ -121,7 +126,7 @@ static int publi_buscarIndiceVacio(Publicacion* pBuffer,int limite,int*indice){
     return ID++;
 }
 
-int publi_PruebaImpresion(Publicacion* pBuffer, int limite)
+int publi_pruebaImpresion(Publicacion* pBuffer, int limite)
 {
 	    int retorno=-1;
 	    int i;
@@ -129,12 +134,12 @@ int publi_PruebaImpresion(Publicacion* pBuffer, int limite)
 	        for(i=0;i<limite;i++){
 	            if(pBuffer!= NULL && !pBuffer[i].isEmpty){
 
-	            	printf("\n el nombre es %s", pBuffer[i].nombreArchivo);
-	           		printf("\n estado %d",pBuffer[i].estadoPublicacion);
-					printf("\n id %d",pBuffer[i].id);
-					printf("\n idCliente %d",pBuffer[i].idCliente);
-					printf("\n numeroRubro %d",pBuffer[i].numeroRubro);
-					printf("\n isEmpty %d",pBuffer[i].isEmpty);
+	            	printf("\n El nombre del archivo es: %s", pBuffer[i].nombreArchivo);
+	           		printf("\n Estado: %d",pBuffer[i].estadoPublicacion);
+					printf("\n ID: %d",pBuffer[i].id);
+					printf("\n ID del cliente: %d",pBuffer[i].idCliente);
+					printf("\n Numero del rubro: %d",pBuffer[i].numeroRubro);
+					printf("\n isEmpty: %d\n",pBuffer[i].isEmpty);
 	            	retorno=0;
 
 	            }
