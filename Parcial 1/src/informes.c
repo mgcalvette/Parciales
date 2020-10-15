@@ -63,12 +63,10 @@ int inf_clienteMasAvisosPausados(Publicacion* pBufferPubli,int limitePubli,Clien
     int i;
     int auxId;
     int auxMaxPausadas;
-    int flag=0;
     if(pBufferCli!=NULL && limiteCli>0 && pBufferPubli!=NULL && limitePubli>0){
         for(i=0;i<limiteCli;i++){
             if (!pBufferCli[i].isEmpty){
-                if(!flag || auxMaxPausadas<publi_contadorPausadas(pBufferPubli,CANTIDADPUBLICACIONES,pBufferCli[i].idCliente)){
-                    flag=1;
+                if(auxMaxPausadas<publi_contadorPausadas(pBufferPubli,CANTIDADPUBLICACIONES,pBufferCli[i].idCliente)){
                     auxMaxPausadas=publi_contadorPausadas(pBufferPubli,CANTIDADPUBLICACIONES,pBufferCli[i].idCliente);
                     auxId=pBufferCli[i].idCliente;
                 }
@@ -88,7 +86,6 @@ int inf_rubroMasAvisos(Publicacion* pBufferPubli,int limitePubli,Cliente* pBuffe
     int i;
     int auxRubro1;
     int auxRubro2;
-    //int flag=0;
     if(pBufferCli!=NULL && limiteCli>0 && pBufferPubli!=NULL && limitePubli>0){
         for(i=0;i<limitePubli;i++)
         {
