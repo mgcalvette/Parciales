@@ -143,10 +143,10 @@ int main()
             	printf("\n1 Cliente mas avisos \n2 Cliente mas avisos pausados\n3 Rubro con mas avisos\n 4-SALIR");
             	    utn_getEntero(&informes,3,"\nIngrese una opcion: ","\nError. Ingrese una opcion de informe",1,3);
             		if(informes==1){
-            				inf_clienteMasventas(publicaciones,CANTIDADPUBLICACIONES,clientes,CANTIDADCLIENTES);
+            				inf_clienteMasAvisos(publicaciones,CANTIDADPUBLICACIONES,clientes,CANTIDADCLIENTES);
             		}
             		if(informes==2){
-            				inf_clienteMasAvisosPausados(publicaciones,CANTIDADPUBLICACIONES,clientes,CANTIDADCLIENTES);
+            			inf_clienteMasAvisosPausados(publicaciones,CANTIDADPUBLICACIONES,clientes,CANTIDADCLIENTES);
             		}
             		if(informes==3){
             			inf_rubroMasAvisos(publicaciones,CANTIDADPUBLICACIONES,clientes,CANTIDADCLIENTES);
@@ -155,16 +155,24 @@ int main()
             			break;
             		}break;
             case 9:
-            	printf("Testing");
-            	cli_pruebaImpresion(clientes,CANTIDADCLIENTES);
-            	publi_pruebaImpresion(publicaciones,CANTIDADPUBLICACIONES);
+            		utn_getEntero(&informes,3,
+            				"\nIngrese la opcion de informe: '4' para ver cliente con mas avisos activos,"
+            				" '5' para ver cliente con mas avisos pausados","Opcion invalida",4,5);
+            		if(informes==4){
+            			inf_clienteMasAvisos(publicaciones,CANTIDADPUBLICACIONES,clientes,CANTIDADCLIENTES);
+            		}
+
+            		if(informes==5){
+            			inf_clienteMasAvisosPausados(publicaciones,CANTIDADPUBLICACIONES,clientes,CANTIDADCLIENTES);
+            		}
             }
     }while(opcion!=10);
 
     return EXIT_SUCCESS;
 }
 int menu(int*opcion){
-    printf("\n1-ALTAS\n2-MODIFICAR\n3-BAJA\n4-PUBLICAR AVISO\n5-PAUSAR AVISO\n6-REANUDAR AVISO \n7-IMPRIMIR CLIENTES\n8-INFORMAR\n9-TEST\n10 Salir");
+    printf("\n1-ALTAS\n2-MODIFICAR\n3-BAJA\n4-PUBLICAR AVISO\n5-PAUSAR AVISO\n6-REANUDAR AVISO \n7-IMPRIMIR CLIENTES\n8-INFORMAR\n9-INFORMES 2"
+    		"\n10 Salir");
     utn_getEntero(opcion,3,"\nIngrese una opcion: ","\nError...ingrese una opcion valida...",1,10);
     return 0;
 
