@@ -1,14 +1,7 @@
-/*
- * Parser.h
- *
- *  Created on: 25 nov. 2020
- *      Author: Gula
- */
+#ifndef SRC_PARSER_H_
+#define SRC_PARSER_H_
 
-#ifndef PARSER_H_
-#define PARSER_H_
-#include "LinkedList.h"
+int parser_clientFromText(FILE* pFile , LinkedList* pArrayListEmployee);
+int parser_sellFromText(FILE* pFile , LinkedList* sellList);
 
-int parser_ClientesFromText(FILE* pFile , LinkedList* this);
-
-#endif /* PARSER_H_ */
+#endif /* SRC_PARSER_H_ */

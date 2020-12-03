@@ -1,0 +1,9 @@
+id,nombre,apellido,cuit
+10,Lara,Rama,23-39983049-0
+11,Laura,Rubio,23-40916040-1
+12,Juan,Ramirez,23-37902240-2
+15,Cristobal,Cristobal,23-38933240-5
+17,Coraline,Mendez,23-31233040-7
+18,John,Doe,23-31947240-8
+19,Cesar,Milan,23-32933040-9
+20,Rocio,Nuria,23-23934052-0

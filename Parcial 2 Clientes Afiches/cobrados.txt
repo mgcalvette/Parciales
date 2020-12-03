@@ -1,0 +1,3 @@
+id,nombre,apellido,cuit,ventas_cobradas
+10,Lara,Rama,23-39983049-0,2
+12,Juan,Ramirez,23-37902240-2,1

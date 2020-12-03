@@ -1,0 +1,3 @@
+id,nombre,apellido,cuit,ventas_a_cobrar
+11,Laura,Rubio,23-40916040-1,2
+20,Rocio,Nuria,23-23934052-0,1
